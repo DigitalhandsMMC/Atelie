@@ -14,6 +14,5 @@ public class BlogPostResponse {
     private String title;
     private String content;
     private LocalDateTime creationDate;
-    private BlogPostFileResponse blogPostFileResponse;
-
+    private Long blogPostFileId;
 }

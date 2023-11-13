@@ -62,7 +62,7 @@ public class BlogPostService {
         BlogPostFileResponse blogPostFileResponse = blogPostFileService.saveVideo(image, blogPost.getId());
 
         BlogPostResponse blogPostResponse = modelMapper.map(saved, BlogPostResponse.class);
-        blogPostResponse.setBlogPostFileResponse(blogPostFileResponse);
+        blogPostResponse.setBlogPostFileId(blogPostFileResponse.getId());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(blogPostResponse);
     }
@@ -96,7 +96,7 @@ public class BlogPostService {
         BlogPostFile newBlogPostFilesByBlogPostId = blogPostFileRepository.findBlogPostFilesByBlogPostId(blogPostId);
 
         BlogPostResponse blogPostResponse = modelMapper.map(saved, BlogPostResponse.class);
-        blogPostResponse.setBlogPostFileResponse(modelMapper.map(newBlogPostFilesByBlogPostId, BlogPostFileResponse.class));
+        blogPostResponse.setBlogPostFileId(modelMapper.map(newBlogPostFilesByBlogPostId, BlogPostFileResponse.class).getId());
 
         return ResponseEntity.ok(blogPostResponse);
     }
@@ -108,7 +108,7 @@ public class BlogPostService {
         for (BlogPost blogPost : blogPostList) {
             BlogPostFile blogPostFilesByBlogPostId = blogPostFileRepository.findBlogPostFilesByBlogPostId(blogPost.getId());
             BlogPostResponse blogPostResponse = modelMapper.map(blogPost, BlogPostResponse.class);
-            blogPostResponse.setBlogPostFileResponse(modelMapper.map(blogPostFilesByBlogPostId, BlogPostFileResponse.class));
+            blogPostResponse.setBlogPostFileId(modelMapper.map(blogPostFilesByBlogPostId, BlogPostFileResponse.class).getId());
             blogPostResponseList.add(blogPostResponse);
         }
 
@@ -122,7 +122,7 @@ public class BlogPostService {
         BlogPostFile blogPostFilesByBlogPostId = blogPostFileRepository.findBlogPostFilesByBlogPostId(blogId);
 
         BlogPostResponse blogPostResponse = modelMapper.map(blogPost, BlogPostResponse.class);
-        blogPostResponse.setBlogPostFileResponse(modelMapper.map(blogPostFilesByBlogPostId, BlogPostFileResponse.class));
+        blogPostResponse.setBlogPostFileId(modelMapper.map(blogPostFilesByBlogPostId, BlogPostFileResponse.class).getId());
 
         return ResponseEntity.status(HttpStatus.OK).body(blogPostResponse);
     }

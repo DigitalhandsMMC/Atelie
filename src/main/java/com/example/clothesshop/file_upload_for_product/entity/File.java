@@ -23,7 +23,7 @@ public class File {
 
     private String contentType;
 
-    @Column(columnDefinition = "BYTEA")
+    @Column(columnDefinition = "LONG VARBINARY")
     private byte[] fileData;
 
     // ManyToOne relationship with Product

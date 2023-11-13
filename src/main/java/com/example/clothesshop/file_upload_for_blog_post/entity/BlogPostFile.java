@@ -22,7 +22,7 @@ public class BlogPostFile {
 
     private String contentType;
 
-    @Column(columnDefinition = "BYTEA")
+    @Column(columnDefinition = "LONG VARBINARY")
     private byte[] fileData;
 
     @Column(name = "blog_post_id")

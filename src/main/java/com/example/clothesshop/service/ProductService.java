@@ -41,7 +41,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ResponseEntity<?> saveProduct(List<MultipartFile> images, String name, String color, Double price, Long userId, Size size, Style style, Length length, PropertyType propertyType) throws IOException {
+    public ResponseEntity<?> saveProduct(List<MultipartFile> images, String name, String color, Double price, Long userId, String size, Style style, Length length, PropertyType propertyType) throws IOException {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (!optionalUser.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not Found");
@@ -113,7 +113,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ResponseEntity<?> updateProduct(List<MultipartFile> images, String name, String color, Double price, Long productId, Long userId, Size size, Style style, Length length, PropertyType propertyType) throws IOException {
+    public ResponseEntity<?> updateProduct(List<MultipartFile> images, String name, String color, Double price, Long productId, Long userId, String size, Style style, Length length, PropertyType propertyType) throws IOException {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (!optionalUser.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not Found");
@@ -147,6 +147,11 @@ public class ProductService {
         ProductResponse productResponse = modelMapper.map(savedProduct, ProductResponse.class);
         productResponse.setFileResponseList(fileResponses);
         return ResponseEntity.status(HttpStatus.CREATED).body(productResponse);
+    }
+
+    public void deleteProductById(Long productId){
+
+        productRepository.deleteById(productId);
     }
 
     public ResponseEntity<?> filterProducts(Style style, Size size, Length length, PropertyType propertyType, Long userId) {

@@ -23,9 +23,9 @@ public class Product {
 
     private String color;
 
-    @Column(name = "size")
-    @Enumerated(EnumType.STRING)
-    private Size size;
+//    @Column(name = "size")
+//    @Enumerated(EnumType.STRING)
+    private String size;
 
     @Column(name = "style")
     @Enumerated(EnumType.STRING)

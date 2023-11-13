@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class BlogPostFileResponse {
 
+    private Long id;
+
     private String name;
     private String contentType;
     private byte[] fileData;

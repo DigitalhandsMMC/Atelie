@@ -20,7 +20,7 @@ public class ProductResponse {
 
     private String color;
 
-    private Size size;
+    private String size;
     private Style style;
     private Length length;
 

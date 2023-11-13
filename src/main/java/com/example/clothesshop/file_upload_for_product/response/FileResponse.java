@@ -9,8 +9,8 @@ public class FileResponse {
 
     private Long id;
 
-    private String name;
-    private String contentType;
-    private byte[] fileData;
+//    private String name;
+//    private String contentType;
+//    private byte[] fileData;
 
 }
